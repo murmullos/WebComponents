@@ -1,0 +1,33 @@
+{
+  "name": "webcomponents",
+  "version": "1.0.0",
+  "description": "Curso para crear webComponents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --config webpack.config.js",
+    "build" : "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murmullos/WebComponents.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/murmullos/WebComponents/issues"
+  },
+  "homepage": "https://github.com/murmullos/WebComponents#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "lit-element": "^3.1.2",
+    "path": "^0.12.7",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "dile-input": "^3.1.2"
+  }
+}
