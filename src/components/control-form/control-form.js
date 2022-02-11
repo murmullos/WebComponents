@@ -1,6 +1,5 @@
 import {LitElement, html, css} from "lit-element";
 import '../input-form/input-form';
-import '../validation-form/validation-form'
 
 class ControlForm extends LitElement {
     static get properties() {
@@ -16,17 +15,39 @@ class ControlForm extends LitElement {
 
     static get styles() {
         return css`
-          * {
-            margin: 0;
-            padding: 0;
-          }
           :host {
             display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
+            flex-flow: column wrap;
+            margin: 10px;
           }
-          input-form{
-            margin: 20px;
+          input-form, ul {
+            font-family: -apple-system,"Segoe UI Emoji"
+          }
+          ul {
+            font-size: 12px;
+            list-style: none;
+            margin: 0;
+            margin-left: 10px;
+            padding: 0;
+          }
+          li:before {
+            content: 'o';
+            position: relative;
+            left: -3px;
+            top: -1px;
+          }
+          li.valid:before {
+            color: green;
+          }
+          li.invalid:before {
+            color: red;
+          }
+          li.valid {
+            color: green;
+          }
+
+          li.invalid {
+            color: red;
           }
         `;
     }
@@ -53,17 +74,17 @@ class ControlForm extends LitElement {
                 validation.valid = validation.pattern.test(value);
                 validation.valided = validation.valid ? true : validation.valided;
                 validation.show = (this.blured || validation.valided || this.submitted) && !validation.valid;
-                validation.class = this.checkClass(validation.show);
+                validation.class = this.checkClass(validation);
             });
         this.value = value;
         this.valid = !this.validationList.some((element) => element.valid === false);
     }
 
-    checkClass(type) {
+    checkClass(validation) {
         if (this.blured || this.onsubmit) {
-           return this.setClass(type);
-        } else if (this.valided) {
-           return this.setClass(type);
+           return this.setClass(validation.valid);
+        } else if (validation.valided) {
+           return this.setClass(validation.valid);
         } else {
             return '';
         }
@@ -75,6 +96,7 @@ class ControlForm extends LitElement {
 
     _blurEventHandler(e) {
         this.blured = true;
+        this.checkValidation(this.value);
     }
 
     render() {
@@ -88,7 +110,9 @@ class ControlForm extends LitElement {
                 </input-form>
                     <ul>
                         ${this.validationList?.map(vald => {
-                            return html`<validation-form .fixed="${vald.fixed}" .show="${vald.show}" .text="${vald.text}" .class="${vald.class}"></validation-form>`  
+                            if (vald.fixed || vald.show) {
+                                return html`<li class="${vald.class}">${vald.text}</li>`
+                            }
                         })}
                     </ul>
                     `

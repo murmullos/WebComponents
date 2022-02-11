@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, html, css } from "lit-element";
 import '../control-form/control-form';
 
 class StepForm extends LitElement {
@@ -7,6 +7,17 @@ class StepForm extends LitElement {
             formData: Array
         }
     }
+
+    static get styles () {
+        return css`
+            :host {
+                background-color: #DDF6FC;
+                display: flex;
+                flex-flow: row wrap;
+          }   
+        `
+    }
+
 
     constructor() {
         super();

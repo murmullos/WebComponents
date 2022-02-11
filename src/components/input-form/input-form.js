@@ -10,19 +10,9 @@ class InputForm extends LitElement {
     }
     static get styles() {
         return css`
-          * {
-            margin: 0;
-            padding: 0;
-          }
           :host {
-              background-color: gainsboro;
               display:flex;
               flex-flow: column nowrap;
-              font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,
-                            sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-              font-size: 15px;
-              max-width: 200px;
-              padding: 5px;
           }
           input {
             border: 1px solid #33C9FF;
@@ -37,11 +27,6 @@ class InputForm extends LitElement {
           }
           label {
             padding: 0 0 5px 5px
-          }
-          p {
-            font-size: 10px;
-            font-weight: bold;
-            padding-left: 10px;
           }
           .valid {
             border: 1px solid green;
