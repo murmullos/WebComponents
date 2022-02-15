@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit-element";
 
-class InputForm extends LitElement {
+class InputFormulit extends LitElement {
     static get properties() {
         return {
             name: String,
@@ -11,8 +11,8 @@ class InputForm extends LitElement {
     static get styles() {
         return css`
           :host {
-              display:flex;
-              flex-flow: column nowrap;
+            display: flex;
+            flex-flow: column nowrap;
           }
           input {
             border: 1px solid #33C9FF;
@@ -29,22 +29,25 @@ class InputForm extends LitElement {
             padding: 0 0 5px 5px
           }
           .valid {
-            border: 1px solid green;
-            outline: 1px solid green;
+            border: 1px solid #8ecc9b;
+            outline: 1px solid #bfffcc;
           }
           .invalid {
-            border: 1px solid red;
-            outline: 1px solid red;
+            border: 1px solid #ffaca2;
+            outline: 1px solid #cc7c73;
           }
         `;
     }
 
     constructor() {
         super();
+        this.name = 'Nombre';
+        this.value = '';
+        this.class= '';
     }
 
     _inputEventHandler(e) {
-       this.dispatchEvent(new CustomEvent('change', {detail: {value:e.target.value, index:this.index}}));
+       this.dispatchEvent(new CustomEvent('change', {detail: {value:e.target.value}}));
     }
 
     _blurEventHandler(e) {
@@ -66,4 +69,4 @@ class InputForm extends LitElement {
     }
 }
 
-customElements.get('input-form') || customElements.define('input-form', InputForm);
+customElements.get('input-formulit') || customElements.define('input-formulit', InputFormulit);
