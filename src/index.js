@@ -55,13 +55,17 @@ window.onload =()=> {
                     }
                 ]
             },
-         /**   {
+            {
                 name: 'Contraseña',
                 id: 'pass1',
                 value: '',
                 validationList:[
                     {   pattern: {
-                            compareWith: 'pass2'
+                            compareWith: 'pass2',
+                            show: (step, validation, self) => {
+                                const stepCompare = self.form.steps?.find((element) => element.id === validation.pattern.compareWith);
+                                return validation.fixed || (step.value !== stepCompare?.value && (self.submitted || !!(step.blured && stepCompare.blured)))
+                            },
                         },
                         text: 'Debes escribir la misma contraseña',
                         fixed: false
@@ -81,7 +85,7 @@ window.onload =()=> {
                         fixed: false
                     },
                 ]
-            } **/
+            }
         ]
     };
 
